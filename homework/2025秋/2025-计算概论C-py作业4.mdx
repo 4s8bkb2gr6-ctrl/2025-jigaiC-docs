@@ -34,7 +34,7 @@
 **代码**  
 
 <Tabs>
-  <Tab title="徐志衡">
+    <Tab title="徐志衡">
     ```python 01：数列求和 lines icon="python"
     def seriesSum(n):
         sumV = 0
@@ -47,6 +47,29 @@
     n = int(input())
     sumV = seriesSum(n)
     print(f'{sumV:.6f}')
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 01：数列求和 lines icon="python"
+    def seriesSum(n):
+    s = 0
+    if n % 2 == 0:
+        for i in range(2, n+1, 2):
+            s += 1/i
+    else:
+        for i in range(1, n+1, 2):
+            s += 1/i
+    return s
+
+
+    def main():
+        n = int(input())
+        sumV = seriesSum(n)
+        print(f'{sumV:.6f}')
+    
+    
+    if __name__ == '__main__':
+        main()
     ```
   </Tab>
 </Tabs>
