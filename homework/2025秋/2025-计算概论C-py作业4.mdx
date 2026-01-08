@@ -52,14 +52,14 @@
   <Tab title="钱丽艳">
     ```python 01：数列求和 lines icon="python"
     def seriesSum(n):
-    s = 0
-    if n % 2 == 0:
-        for i in range(2, n+1, 2):
-            s += 1/i
-    else:
-        for i in range(1, n+1, 2):
-            s += 1/i
-    return s
+        s = 0
+        if n % 2 == 0:
+            for i in range(2, n+1, 2):
+                s += 1/i
+        else:
+            for i in range(1, n+1, 2):
+                s += 1/i
+        return s
 
 
     def main():
@@ -122,6 +122,27 @@
     s, t, n = input().split()
     n = int(n)
     print(strFindDel(s, t, n))
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 02：删除子串 lines icon="python"
+    def strFindDel(longS, shortS, n):
+        if longS.find(shortS) != -1:
+            if not n:       # 只删除一次
+                return longS.replace(shortS, "", 1)
+            else:           # 删除所有找到的
+                return longS.replace(shortS, "")
+        else:
+            return "Fail to delete"
+
+    def main():
+        longStr, shortStr, boo = input().split()
+        boo = int(boo)
+        print(strFindDel(longStr, shortStr, boo))
+
+
+    if __name__ == '__main__':
+        main()
     ```
   </Tab>
 </Tabs>
