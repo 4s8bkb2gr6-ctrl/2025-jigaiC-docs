@@ -307,6 +307,41 @@
         print('false')
     ```
   </Tab>
+  <Tab title="钱丽艳">
+    ```python 04：自动判题 Solution 1 lines icon="python"
+    # Solution 1
+    def getNumbers(s):
+        expS, z = s.split("=")
+        z = float(z)
+        for i in '+-*/':
+            if i in expS:
+                op = expS[expS.find(i)]
+                x, y = expS.replace(i, ' ').split()
+                break
+        return x, y, z, op
+
+
+    string = input()
+    x, y, z, op = getNumbers(string)
+    if round(eval(x + op + y), 2) == z:
+        print("true")
+    else:
+        print("false")
+    ```
+    ```python 04：自动判题 Solution 2 lines icon="python"
+    # Solution 2
+    def getNumbers(expR, ans):
+        expR, ans = eval(expR), float(ans)
+        return expR, ans
+
+    expS, zS = input().split('=')
+    expResult, z = getNumbers(expS, zS)
+    if round(expResult, 2) == round(z, 2):
+        print("true")
+    else:
+        print("false")
+    ```
+  </Tab>
 </Tabs>
 
 ## 05：凯撒密码
@@ -376,6 +411,9 @@
             ans.append(msg[i])
     print(''.join(ans))
     ```
+  </Tab>
+  <Tab title="钱丽艳">
+    
   </Tab>
 </Tabs>
 
