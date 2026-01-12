@@ -413,7 +413,37 @@
     ```
   </Tab>
   <Tab title="钱丽艳">
+    ```python 05：凯撒密码 lines icon="python"
+    def getTranslatedMsg(mode, key, msg):
+        if mode.lower() == 'd' or mode.lower() == 'decrypt':   
+            key = -key  # 解密相当于加密的逆运算，如果是解密，密钥取反
+        elif mode.lower() != 'e' and mode.lower() != 'encrypt':
+            return 'Wrong Mode'
+        translatedMsg = ''
+        for symbol in msg:
+            ordS = ord(symbol)
+            if symbol.isupper():        # 大写字母
+                p = ord('A') + (ordS - ord('A') + key) % 26
+            elif symbol.islower():      # 小写字母
+                p = ord('a') + (ordS - ord('a') + key) % 26
+            elif symbol.isnumeric():     # 数字
+                p = ord('0') + (ordS - ord('0') + key) % 10
+            else:
+                p = ordS
+            translatedMsg += chr(p)
+        return translatedMsg
+
+
+    def main():
+        mode = input()
+        key = int(input())
+        msg = input()
+        print(getTranslatedMsg(mode, key, msg))
     
+    
+    if __name__ == '__main__':
+        main()
+    ```
   </Tab>
 </Tabs>
 
