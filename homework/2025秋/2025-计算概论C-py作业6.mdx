@@ -82,7 +82,6 @@
 <Tabs>
   <Tab title="尹思源">
     ```python 02：校门外的树 lines icon="python"
-    # 利用字典实现
     L, M = map(int, input().split())
     trees = [1] * (L + 1)
     for _ in range(M):
@@ -93,7 +92,6 @@
   </Tab>
   <Tab title="钱丽艳">
     ```python 02：校门外的树 lines icon="python"
-    # 利用列表实现
     l, m = map(int, input().split())    # l:马路长，m:区域数
     ls = [1 for i in range(l+1)]    # ls中元素为1代表该位置有树，0表示没有
     for i in range(m):
@@ -127,6 +125,7 @@
 <Tabs>
   <Tab title="尹思源">
     ```python 03：成绩排序 lines icon="python"
+    # 利用字典实现
     n = int(input())
     students = {}
     for i in range(n):
@@ -135,6 +134,19 @@
     students = sorted(students.items(), key=lambda x: (-x[1], x[0]))
     for student in students:
         print(student[0], student[1])
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 03：成绩排序 lines icon="python"
+    # 利用列表实现
+    n = int(input())
+    scores = []
+    for i in range(n):
+        row = input().split()
+        scores.append(row)
+    scores.sort(key=lambda x: (-int(x[1]), x[0]))
+    for i in scores:
+        print(i[0], i[1])
     ```
   </Tab>
 </Tabs>
@@ -163,6 +175,7 @@
   <Tab title="尹思源">
     ```python 04：矩阵换行求边缘和 Solution 1 lines icon="python"
     m, n = map(int, input().split())
+    # matrix = [[int(x) for x in input().split()] for i in range(m)]  # 本行可替换下面的4行代码
     matrix = []
     for i in range(m):
         row = list(map(int, input().split()))
@@ -222,6 +235,33 @@ n行，每行m个整数，为模糊处理后的图像。相邻两个整数之间
             img_avg[i][j] = round(total / count)
     for row in img_avg:
         print(" ".join(map(str, row)))
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 05：图像模糊处理 lines icon="python"
+    n, m = map(int, input().split())
+    ls = []
+    # 获得要处理的数据，存储在一个列表中（最终为二维列表）
+    for i in range(n):
+        s = input().split()
+        ls.append(s)
+    # 处理数据
+    for i in range(n):
+        line = []               # 一维数组，将需要处理的行的数据，处理后放入其中
+        if i == 0 or i == n-1:  # 第一行及最后一行原样输出
+            print(' '.join(ls[i]))
+        else:
+            for j in range(m):  # 非第一行及最后一行，每一行的处理
+                if j == 0 or j == m-1:  # 第一列及最后一列原样输出，无需做处理
+                    line.append(ls[i][j])
+                else:
+                    # round()对于.5，虽有奇进偶不进，但本题因为是整数除以5所以不会出现.5的情况
+                    averageV = round((int(ls[i-1][j]) + int(ls[i+1][j]) +
+                                 int(ls[i][j]) +
+                                 int(ls[i][j-1]) + int(ls[i][j+1]))/5, 0)                       
+                    averageV = str(int(averageV))
+                    line.append(averageV)
+         print(' '.join(line))
     ```
   </Tab>
 </Tabs>
