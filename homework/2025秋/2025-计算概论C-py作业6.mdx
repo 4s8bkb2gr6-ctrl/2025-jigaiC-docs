@@ -82,12 +82,25 @@
 <Tabs>
   <Tab title="尹思源">
     ```python 02：校门外的树 lines icon="python"
+    # 利用字典实现
     L, M = map(int, input().split())
     trees = [1] * (L + 1)
     for _ in range(M):
         a, b = map(int, input().split())
         trees[a : b + 1] = [0] * (b - a + 1)
     print(trees.count(1))
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 02：校门外的树 lines icon="python"
+    # 利用列表实现
+    l, m = map(int, input().split())    # l:马路长，m:区域数
+    ls = [1 for i in range(l+1)]    # ls中元素为1代表该位置有树，0表示没有
+    for i in range(m):
+        start, end = map(int, input().split())
+        for j in range(start, end+1):
+            ls[j] = 0
+    print(ls.count(1))
     ```
   </Tab>
 </Tabs>
