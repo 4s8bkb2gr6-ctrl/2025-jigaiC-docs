@@ -349,6 +349,21 @@ n行，每行m个整数，为模糊处理后的图像。相邻两个整数之间
         print(False)
     ```
   </Tab>
+  <Tab title="钱丽艳">
+    ```python 07：字典练习 lines icon="python"
+    pairs1 = input().split(",")
+    D = {p.split()[0]: int(p.split()[1]) for p in pairs1}  # D为字典
+    pairs2 = input().split(",")
+    P = {i.split()[0]: int(i.split()[1]) for i in pairs2}   # P为字典
+    v = int(input())
+    
+    D.update(P)
+    D["a"] = v
+    print("c" in D.keys())
+    print(0 in D.values())
+    print(("b", 1) in D.items())
+    ```
+  </Tab>
 </Tabs>
 
 ## 08：单词出现频率统计
@@ -437,6 +452,26 @@ teachers.html 10:59:01  11:01:03
         webs[web] = webs.get(web, 0) + time
     webs = sorted(webs.items(), key=lambda x: (-x[1], x[0]))
     print(webs[0][0])
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 09：网站网页访问统计  lines icon="python"
+    def timeToSecond(tList):
+    return tList[0] * 3600 + tList[1] * 60 + tList[2]
+
+
+    n = int(input())
+    d = {}  # {url1: visitTimes, ......}
+    for i in range(n):
+        ls = input().split()
+        url = ls[0]
+        startT = timeToSecond(list(map(int, ls[1].split(":"))))
+        endT = timeToSecond(list(map(int, ls[2].split(":"))))
+        if ls[0] not in d:  # 添加键值对
+            d[url] = 0
+        d[url] += endT - startT
+    lsT = sorted(d.items(), key=lambda item: item[1], reverse=True)
+    print(lsT[0][0])
     ```
   </Tab>
 </Tabs>
@@ -577,6 +612,50 @@ teachers.html 10:59:01  11:01:03
         if x < y:
             print(x, y)
 
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 11  lines icon="python"
+    # 获取数据
+    gTime, fTime = map(int, input().split())
+    n = int(input())
+    ls = []  # 构造列表，存储委托人的时间
+    for i in range(n):
+        startTime, endTime = map(int, input().split())
+        ls.append((startTime, endTime))
+    
+    # 处理数据
+    ## 对委托人的时间进行排序
+    ls.sort()
+    ## 构造列表，存储连续的工作时段
+    result=[]   # result的元素为列表[workStartTime, workEndTime]
+    for t in ls:
+        if len(result)==0:  # 第一次循环，将ls中的第一个元素直接添加到result
+            result.append([t[0], t[1]])
+        else:
+            # 判断下一个客户的时间是否与上一个客户有重叠
+            # 有重叠（连续）
+            if t[0] <= result[-1][1]:   # 如果下一个客户的开始时间小于等于上一个客户的结束时间，则有重叠
+                '''
+                如果有重叠并且下一个客户的结束时间大于上一个客户的结束时间，则更新连续工作时间段的结束时间
+                '''
+                if t[1]>result[-1][1]:   
+                    result[-1][1]=t[1]
+            # 无重叠（不连续）
+            else:
+                result.append([t[0], t[1]])  # 新增另一段工作时间
+    ## 计算最长工作时间，相同则看工作的开始时间
+    result.sort(key=lambda x:(x[1]-x[0], x[0]), reverse=True)
+    
+    # 输出结果
+    workStart, workEnd, restLs = result[0][0], result[0][1], []    
+    ## 输出工作时间段
+    print(workStart, workEnd)
+    ## 输出休息时间段（最多两段休息时段）
+    if workStart > gTime:  # 如果工作开始时间大于起床时间，增加一个休息时段
+        print(gTime, workStart)
+    if workEnd < fTime:    # 如果工作结束时间小于入睡时间，增加一个休息时段
+        print(workEnd, fTime)
     ```
   </Tab>
 </Tabs>
