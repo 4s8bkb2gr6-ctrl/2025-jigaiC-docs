@@ -49,6 +49,33 @@
     print(oct(n)[2:])
     ```
   </Tab>
+  <Tab title="钱丽艳">
+    ```python 01：十进制到八进制 Solution 1 lines icon="python"
+    # Solution 1
+    # 迭代法
+    n = int(input())
+    ls = []
+    while 1:
+        quotient, r = n // 8, n % 8
+        n = quotient
+        ls.append(str(r))
+        if quotient == 0:
+            break
+    ls.reverse()
+    print(''.join(ls))
+    ```
+    ```python 01：十进制到八进制 Solution 2 lines icon="python"
+    # 递归法
+    def iteration_DToO(num, m):
+        if num == 0:
+            return
+        else:
+            iteration_DToO(num//m, m)
+            print(num % m, end='')  # 在递归调用之下，就是逆序输出
+    n = int(input())
+    iteration_DToO(n, 8)
+    ```
+  </Tab>
 </Tabs>
 
 ## 02：房间转移（基础版）
@@ -151,6 +178,22 @@ m行：每行对应一个输入数据点，输出小猴子第一天摘桃子的�
       print(3 * (1 << (n - 1)) - 2)
     ```
   </Tab>
+  <Tab title="钱丽艳">
+    ```python 03：小猴吃桃 Solution 1 lines icon="python"
+    # 递归
+    def peachNum(n):
+        if n == 1:  # 最后1天只剩1个桃子
+            num = 1
+        else:  # 第n天早上的桃子数num/2 - 1 = 后一天（n-1）早上的桃子数peachNum(n-1)
+            num = (peachNum(n-1) + 1) * 2   
+        return num
+    
+    m = int(input())
+    for i in range(m):
+        n = int(input())
+        print(peachNum(n))
+    ```
+  </Tab>
 </Tabs>
 
 ## 04：公约数和公倍数（递归）
@@ -192,6 +235,31 @@ m行：每行对应一个输入数据点，输出小猴子第一天摘桃子的�
       c = gcd(a, b)
       # 最小公倍数 = a * b / 最大公约数
       print(c, a * b // c)
+    ```
+  </Tab>
+  <Tab title="钱丽艳">
+    ```python 04：公约数和公倍数（递归） Solution 1 lines icon="python"
+    # 非递归方法
+    def func(a, b):
+        x = max(a, b)
+        y = min(a, b)
+        lcm = x
+        while True:     # 求最小公倍数
+            if lcm % x == 0 and lcm % y == 0:
+                break
+            lcm += x
+        while y!= 0:    # 求最大公约数
+            x, y = y, x % y
+        return x, lcm
+    
+    
+    ci = int(input())
+    for i in range(ci):
+        c, d = map(int, input().split())
+        result = func(c, d)
+        for item in result:
+            print(item, end=" ")
+        print()
     ```
   </Tab>
 </Tabs>
