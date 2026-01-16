@@ -35,6 +35,18 @@ Q老师的计概开课了！每位选课的同学都需要在Openjudge上注册�
             print(h[0])
     ```
   </Tab>
+  <Tab title="钱丽艳">
+    ```python 01：合法昵称 lines icon="python"
+    n = int(input())
+    import re
+    m = r"^[a-z]{2}[0-9]{10}[a-z]{2,}$"
+    for i in range(n):
+        s = input()
+        sm = re.match(r, s)   # re.match()从字符串的起始位置匹配
+        if sm:
+            print(sm.group())
+    ```
+  </Tab>
 </Tabs>
 
 ## 02：找出所有整数
@@ -52,6 +64,7 @@ Q老师的计概开课了！每位选课的同学都需要在Openjudge上注册�
     import re
 
     m = r"[0-9]{1,}"
+    # m = r"\d+"
 
     while True:
         try:
@@ -79,6 +92,7 @@ Q老师的计概开课了！每位选课的同学都需要在Openjudge上注册�
     s = input()
     import re
     m = r"[0-9]{1}"
+    # m = r"\d{1}"
     result = re.findall(m, s)
     print(len(result))
     ```
@@ -121,6 +135,7 @@ Q老师的计概开课了！每位选课的同学都需要在Openjudge上注册�
     ```python 05：密码判断 lines icon="python"
     import re
     m = r"^[a-zA-Z][a-zA-Z0-9_-]{7,}$"
+    # m = r"[A-Za-z][\w-]{7,}$"
     while True:
         try:
             s = input()
@@ -177,7 +192,13 @@ Q老师的计概开课了！每位选课的同学都需要在Openjudge上注册�
         if len(result) == 0:
             print("NONE")
         else:
-            print(*result)
+            print(*result)  # *result为可变长位置参数，它将可迭代对象 result中的元素作为独立的参数传递给 print() 
+            '''
+            # 也可使用下面这段代码替代上面的print()语句
+            for x in lst:
+                print(x, end=" ")
+            print('')
+            '''
     ```
   </Tab>
 </Tabs>
